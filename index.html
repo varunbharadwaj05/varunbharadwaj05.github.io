@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varun Bharadwaj</title>
+<meta name="description" content="Varun Bharadwaj, mechanical and aerospace design engineer in Munich. Hardware from design to testing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --text:#000000; --body:#3a3a3a; --muted:#7a7a7a; --rule:#e8e8e8; --ph:#f1f1f1;
+    --font:'Instrument Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --w:1120px; --gap:32px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important}}
+  body{background:var(--bg);color:var(--body);font-family:var(--font);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  a:focus-visible,button:focus-visible{outline:2px solid #000;outline-offset:3px}
+  h1,h2,h3{color:var(--text);font-weight:500;letter-spacing:-.01em}
+  .wrap{max-width:var(--w);margin:0 auto;padding:0 32px}
+  .view{display:none}
+  .view.on{display:block}
+
+  /* header */
+  header{padding:28px 0}
+  header .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap}
+  header .name{font-weight:500;color:var(--text);font-size:17px}
+  header nav{display:flex;gap:28px;font-size:16px}
+  header nav a{color:var(--body)}
+  header nav a:hover{color:var(--text);text-decoration:underline;text-underline-offset:4px}
+
+  /* home */
+  .intro{padding:96px 0 56px;max-width:760px}
+  .intro h1{font-size:clamp(34px,4.8vw,54px);line-height:1.12;letter-spacing:-.02em}
+  .intro p{margin-top:28px;font-size:19px;line-height:1.5;max-width:560px}
+  .intro .links{margin-top:24px;font-size:16px;color:var(--muted)}
+  .intro .links a{color:var(--text);text-decoration:underline;text-underline-offset:4px;text-decoration-color:#bbb}
+  .intro .links a:hover{text-decoration-color:var(--text)}
+
+  .lead-photo{margin-top:40px}
+  .lead-photo img{width:100%;aspect-ratio:16/9;object-fit:cover}
+  .cap{font-size:13.5px;color:var(--muted);margin-top:12px;line-height:1.45}
+
+  .section{padding-top:112px}
+  .section h2{font-size:15px;font-weight:500;color:var(--muted);letter-spacing:0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px var(--gap);margin-top:28px}
+  .card img,.card .ph{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--ph)}
+  .card .ph{display:flex;align-items:flex-end;padding:16px;font-size:13.5px;color:var(--muted)}
+  .card h3{font-size:21px;margin-top:18px;line-height:1.3}
+  .card p{font-size:15.5px;color:var(--body);margin-top:6px;max-width:44ch;line-height:1.45}
+  .card small{display:block;font-size:14px;color:var(--muted);margin-top:8px}
+  .card.text{border-top:1px solid var(--rule);padding-top:22px}
+  .card.text h3{margin-top:0}
+  .card.wide{grid-column:1/-1}
+  .card.wide p{max-width:62ch}
+  .card:hover h3{text-decoration:underline;text-underline-offset:5px;text-decoration-color:#bbb}
+
+  .exp{margin-top:28px;border-top:1px solid var(--rule)}
+  .exp .r{display:grid;grid-template-columns:200px 1fr;gap:var(--gap);padding:26px 0;border-bottom:1px solid var(--rule)}
+  .exp .r .d{color:var(--muted);font-size:15.5px;padding-top:2px}
+  .exp .r b{display:block;font-weight:500;color:var(--text);font-size:18px}
+  .exp .r span{display:block;font-size:15.5px;color:var(--body);margin-top:2px}
+  .exp .r p{font-size:15.5px;color:var(--body);margin-top:10px;max-width:60ch;line-height:1.5}
+  .exp .r a{color:var(--text);text-decoration:underline;text-underline-offset:4px;text-decoration-color:#bbb}
+  .exp .r a:hover{text-decoration-color:var(--text)}
+
+  .about{max-width:640px}
+  .about p{margin-top:22px;font-size:17px;line-height:1.55}
+  .about p + p{margin-top:16px}
+
+  footer{margin-top:128px;padding:32px 0 48px;border-top:1px solid var(--rule);font-size:14.5px;color:var(--muted)}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  footer a{color:var(--text);text-decoration:underline;text-underline-offset:4px;text-decoration-color:#bbb}
+
+  /* case study */
+  .case-top{padding:40px 0 0}
+  .case-top .back{font-size:15.5px;color:var(--muted)}
+  .case-top .back:hover{color:var(--text);text-decoration:underline;text-underline-offset:4px}
+  .case-top h1{font-size:clamp(32px,4.6vw,52px);line-height:1.12;letter-spacing:-.02em;margin-top:48px;max-width:20ch}
+  .case-top .lede{font-size:19px;line-height:1.5;max-width:640px;margin-top:26px}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;padding-top:22px;border-top:1px solid var(--rule);font-size:14.5px}
+  .meta div span{display:block;color:var(--muted);margin-bottom:3px}
+  .meta div{color:var(--text);line-height:1.4}
+
+  .hero{margin-top:48px}
+  .hero img,.hero .ph{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--ph)}
+  .hero .ph{display:flex;align-items:flex-end;padding:20px;font-size:13.5px;color:var(--muted)}
+
+  .facts{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:40px;font-size:15.5px;color:var(--body)}
+  .facts b{font-weight:500;color:var(--text)}
+
+  .phase{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;padding-top:24px;border-top:1px solid var(--rule)}
+  .phase b{display:block;font-weight:500;color:var(--text);font-size:16px}
+  .phase p{font-size:14.5px;color:var(--body);margin-top:6px;line-height:1.45}
+
+  .block{margin-top:96px;display:grid;grid-template-columns:280px 1fr;gap:var(--gap)}
+  .block h2{font-size:24px;line-height:1.25;max-width:14ch;letter-spacing:-.01em}
+  .block .txt p{max-width:600px;line-height:1.55}
+  .block .txt p + p{margin-top:16px}
+  .figs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);margin-top:36px}
+  .figs.one{grid-template-columns:1fr}
+  .figs.three{grid-template-columns:1fr 1fr 1fr}
+  figure{margin:0}
+  figure img,figure .ph{width:100%;object-fit:cover;background:var(--ph);cursor:zoom-in}
+  figure .ph{aspect-ratio:4/3;}
+  .figs.one .ph{aspect-ratio:16/9}
+  figure .ph{display:flex;align-items:flex-end;padding:16px;font-size:13.5px;color:var(--muted);cursor:default}
+  figure.wide img{aspect-ratio:16/9}
+  figure.std img{aspect-ratio:4/3}
+  figure.tall img{aspect-ratio:3/4}
+  figure.tall .ph{aspect-ratio:3/4}
+  figure.sq img{aspect-ratio:1/1}
+  figure.contain img{aspect-ratio:4/3;object-fit:contain;background:#fff}
+  figcaption{font-size:13.5px;color:var(--muted);margin-top:12px;line-height:1.45}
+
+  .note{margin-top:72px;font-size:14.5px;color:var(--muted);max-width:60ch;line-height:1.5}
+
+  .next{margin-top:112px;padding-top:28px;border-top:1px solid var(--rule)}
+  .next span{display:block;font-size:14.5px;color:var(--muted)}
+  .next a{font-size:24px;color:var(--text);font-weight:500;letter-spacing:-.01em;display:inline-block;margin-top:6px}
+  .next a:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-color:#bbb}
+
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:rgba(255,255,255,.96);display:none;align-items:center;justify-content:center;z-index:50;padding:32px;cursor:zoom-out}
+  .lb.on{display:flex}
+  .lb img{max-width:100%;max-height:100%}
+  .lb figcaption{position:absolute;bottom:24px;left:32px;right:32px;text-align:center}
+
+  @media(max-width:820px){
+    .wrap{padding:0 20px}
+    header{padding:22px 0}
+    header nav{gap:20px;font-size:15px}
+    .intro{padding:56px 0 40px}
+    .intro p{font-size:17.5px}
+    .section{padding-top:80px}
+    .grid{grid-template-columns:1fr;gap:44px}
+    .exp .r{grid-template-columns:1fr;gap:6px;padding:22px 0}
+    .case-top h1{margin-top:36px}
+    .meta,.phase{grid-template-columns:1fr 1fr}
+    .block{grid-template-columns:1fr;gap:18px;margin-top:72px}
+    .block h2{max-width:none}
+    .figs,.figs.three{grid-template-columns:1fr;gap:28px}
+    .next{margin-top:80px}
+    footer{margin-top:96px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="name" href="#home">Varun Bharadwaj</a>
+    <nav><a href="#work">Work</a><a href="#experience">Experience</a><a href="Varun_Bharadwaj_CV.pdf" target="_blank" rel="noopener">CV</a><a href="mailto:varunbharadwaj05@gmail.com">Email</a></nav>
+  </div>
+</header>
+
+<!-- ============================ HOME ============================ -->
+<main class="view on" id="v-home">
+  <div class="wrap">
+    <section class="intro">
+      <h1>Hardware from design to testing.</h1>
+      <p>I'm a mechanical and aerospace design engineer in Munich. I take structures from first load cases through CAD, simulation and release, and then test them for real. Right now I'm the primary mechanical designer on a 250&nbsp;kg firefighting UAV at a stealth startup.</p>
+      <p class="links">Currently at a stealth aerial robotics startup and finishing an MSc in Aerospace Engineering at TUM. <a href="mailto:varunbharadwaj05@gmail.com">varunbharadwaj05@gmail.com</a></p>
+    </section>
+
+    <div class="lead-photo">
+      <img src="img/kolibri-white-blue-fixedwing-evtol.jpg" alt="Kolibri, a white and blue fixed-wing eVTOL, on the apron under a cloudy sky">
+      <p class="cap">Kolibri, HORYZN's defibrillator delivery eVTOL, before a test flight. I led aerostructures and CAD on this aircraft.</p>
+    </div>
+
+    <section class="section" id="work">
+      <h2>Selected work</h2>
+      <div class="grid">
+        <a class="card text wide" href="#firefighting-uav">
+          <h3>Firefighting UAV: gimbaled nozzle and airframe</h3>
+          <p>Hardware from design to flight test: a two-axis gimbal that aims a high-pressure water jet in flight, an airframe sized by water sloshing loads, and sealed enclosures for field use.</p>
+          <small>Stealth startup, 2026 to present</small>
+        </a>
+        <a class="card" href="#battery-module">
+          <img src="img/fullscale-interstitial-structure-machined-sandwich.jpg" style="object-position:12% 50%" alt="Full-scale interstitial structure, a machined sandwich panel with a dense array of cell holes">
+          <h3>Battery module and thermal runaway containment</h3>
+          <p>Three module generations and a patent-pending interstitial structure for the propulsion battery of a 9-seat electric aircraft.</p>
+          <small>Vaeridion, 2024 to 2026</small>
+        </a>
+        <a class="card" href="#kolibri">
+          <img src="img/cad-rendering-kolibri-wing-highlighted.jpg" alt="CAD rendering of Kolibri with one wing highlighted">
+          <h3>Kolibri: fixed-wing eVTOL for defibrillator delivery</h3>
+          <p>Structural layout, molds, wingbox, payload box and rope release, CFRP lamination, flight test.</p>
+          <small>HORYZN, 2023 to 2025</small>
+        </a>
+        <a class="card" href="#prosthetic-hand">
+          <img src="img/prosthetic-hand-prototype-bench-carbon.jpg" style="object-position:50% 78%" alt="Prosthetic hand prototype on a bench with a carbon socket behind it">
+          <h3>Cybathlon prosthetic hand mechanism</h3>
+          <p>Joints, transmission and packaging under tight tolerances. Validated with SLA and FDM prototypes.</p>
+          <small>MIRMI, 2024</small>
+        </a>
+        <a class="card" href="#sprind">
+          <img src="img/cad-hexacopter-centre-plate-flight.jpg" alt="CAD of a hexacopter centre plate with the flight electronics laid out between six arms">
+          <h3>Payload gripper for a hexacopter</h3>
+          <p>Gripping mechanism for an autonomous hexacopter built for the SPRIND Funke drone competition. Avionics integration and field test support.</p>
+          <small>TUM Autonomous Aerial Systems, 2024</small>
+        </a>
+        <a class="card text" href="#goaero">
+          <h3>GoAERO: scaled octacopter concept</h3>
+          <p>Conceptual design of a scaled emergency response eVTOL. The submission won a 10,000 USD prize.</p>
+          <small>HORYZN, 2024 to 2025</small>
+        </a>
+        <a class="card text" href="#rocket">
+          <h3>Bipropellant rocket: regen-cooled chamber</h3>
+          <p>Composite manufacturing and structural prototyping for a student-built liquid rocket.</p>
+          <small>WARR, 2022 to 2023</small>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <h2>Experience</h2>
+      <div class="exp">
+        <div class="r">
+          <div class="d">Apr 2026 to present</div>
+          <div><b>Stealth startup, Munich</b><span>Mechanical Engineer, primary mechanical designer</span>
+          <p>I own the structural architecture of a 250 kg firefighting UAV and work on its hardware from design to flight test. Designed the two-axis gimbaled nozzle, engineered the airframe and tank interfaces around water sloshing loads, and designed the battery integration and the sealed enclosures for field use. I manage the DMU on 3DEXPERIENCE and fly the test campaigns myself. <a href="#firefighting-uav">Project</a></p></div>
+        </div>
+        <div class="r">
+          <div class="d">Jul 2024 to Apr 2026</div>
+          <div><b>Vaeridion, Munich</b><span>Mechanical Design Engineer, propulsion battery module</span>
+          <p>Three module generations for the battery of a 9-seat electric aircraft, from jigs and interconnect fuses to the full pack architecture. Designed sealing and venting concepts, built and burned test articles, and ran Abaqus FEA with temperature-dependent materials past 1000 °C. Named co-inventor on the patent-pending interstitial structure. <a href="#battery-module">Project</a></p></div>
+        </div>
+        <div class="r">
+          <div class="d">Aug 2023 to Jan 2025</div>
+          <div><b>HORYZN, TUM</b><span>Aerostructures &amp; CAD Team Lead</span>
+          <p>Led aerostructures and CAD for the Kolibri AED delivery UAV and the GoAERO emergency response concept. Owned the structural layout, bonded joint and fastener concepts, ran design reviews and held CAD standards across the team, through prototype build and integration. Before the lead role I wrote path planning and precision landing features in ROS and Python. <a href="#kolibri">Kolibri</a>, <a href="#goaero">GoAERO</a></p></div>
+        </div>
+        <div class="r">
+          <div class="d">May to Oct 2024</div>
+          <div><b>MIRMI, TUM</b><span>Mechanical Design Engineer, Cybathlon prosthetic hand</span>
+          <p>Designed the hand mechanism: joints, transmission and packaging, all under tight tolerance constraints. Built SLA and FDM prototypes and validated them through fit, function and actuation testing. <a href="#prosthetic-hand">Project</a></p></div>
+        </div>
+        <div class="r">
+          <div class="d">Apr to Sep 2024</div>
+          <div><b>TUM Autonomous Aerial Systems</b><span>Flight-Test &amp; Integration Engineer, SPRIND Funke</span>
+          <p>Designed a payload gripping mechanism for a hexacopter and supported avionics and system integration. Ran the pre-flight checks and quick fixes during field tests. <a href="#sprind">Project</a></p></div>
+        </div>
+        <div class="r">
+          <div class="d">Oct 2022 to Feb 2023</div>
+          <div><b>WARR, TUM</b><span>Structural Engineer, bipropellant liquid rocket</span>
+          <p>Composite manufacturing and structural prototyping. Worked on the regeneratively cooled chamber subsystems and planned layups and tooling. <a href="#rocket">Project</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <h2>About</h2>
+      <p>I grew up in Bangalore and moved to Munich for aerospace engineering at TUM. I finished the BSc in early 2026 and started the MSc right after, alongside full-time work.</p>
+      <p>I hold EU A2 and STS remote pilot certificates and fly the aircraft I design during test campaigns. Every project on this site was built and tested.</p>
+    </section>
+  </div>
+</main>
+
+<!-- ============================ FIREFIGHTING UAV ============================ -->
+<main class="view" id="v-firefighting-uav" data-title="Firefighting UAV">
+  <div class="wrap">
+    <div class="case-top">
+      <a class="back" href="#work">Back to work</a>
+      <h1>Firefighting UAV: gimbaled nozzle and airframe</h1>
+      <p class="lede">I'm the primary mechanical designer on a 250 kg firefighting UAV. It carries water, aims a high-pressure jet at a fire from the air, and flies free of any hose. I own its structural architecture and work on the hardware across the full loop: design, simulation, release, flight test and the next revision.</p>
+      <div class="meta">
+        <div><span>Organisation</span>Stealth startup, Munich</div>
+        <div><span>Role</span>Mechanical Engineer, hardware from design to flight test</div>
+        <div><span>Period</span>Apr 2026 to present</div>
+        <div><span>Skills</span>SolidWorks, 3DEXPERIENCE, Abaqus, hydraulics, injection moulding, 3D printing, CNC machining, sheet metal, IP-rated sealing</div>
+      </div>
+    </div>
+
+    <div class="facts">
+      <div><b>250 kg</b> take-off mass</div>
+      <div><b>Two-axis</b> gimbaled nozzle</div>
+      <div><b>Free flying</b>, no tether</div>
+      <div><b>Mk2</b> flying, <b>Mk3</b> in architecture phase</div>
+    </div>
+
+    <div class="block">
+      <h2>Hardware from design to flight test</h2>
+      <div class="txt">
+        <p>I work on the aircraft's hardware across the whole loop. I design, simulate and tolerance parts, then release them for CNC machining, sheet metal, 3D printing and injection moulding. I fly the aircraft, and the next revision starts from what the flight and field tests show. I work through that with the electronics team, and the DMU in 3DEXPERIENCE keeps the configuration under control.</p>
+        <p>The aircraft works outdoors and around a lot of water. I design the IP67 electronics enclosures and the IP54 structural assemblies: seals, gaskets, drainage, and materials and finishes that hold up in the field. I also designed the battery integration, the pack mounting and the high-current harness routing.</p>
+        <p>A product designer and I work on packaging, ergonomics and serviceability, so the aircraft stays easy to handle and maintain in the field.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Aiming a water jet from a hovering airframe</h2>
+      <div class="txt">
+        <p>The nozzle sits on a two-axis gimbal so the aircraft can hold position and steer the jet. I designed the swivel joints and the servo drive, selected and calibrated the servos, and integrated the gimbal with the flight controller. The jet has to stay coherent over distance, so the flow path and the straightener upstream of the nozzle were part of the same design loop.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Sizing the airframe around water that moves</h2>
+      <div class="txt">
+        <p>A partially filled tank does not behave like a fixed mass. During payload flight testing we stepped up the water load until a sloshing-driven instability showed up and forced a safe abort. I analysed the slosh dynamics and the moment of inertia across fill levels, and the tank and airframe interfaces were resized from that data.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Fixing what the field found</h2>
+      <div class="txt">
+        <p>Two examples from Mk2 test campaigns. A harness failure traced back to vibration-induced abrasion of a phase cable, fixed with routing and clamping changes. Screws on the battery bay fairing loosened under vibration, so I replaced them with a bayonet lock.</p>
+      </div>
+    </div>
+
+    <p class="note">This program is under NDA, so there are no images here. I can go into more detail in conversation.</p>
+
+    <div class="next"><span>Next project</span><a href="#battery-module">Battery module and thermal runaway containment</a></div>
+  </div>
+</main>
+
+<!-- ============================ BATTERY MODULE ============================ -->
+<main class="view" id="v-battery-module" data-title="Battery module">
+  <div class="wrap">
+    <div class="case-top">
+      <a class="back" href="#work">Back to work</a>
+      <h1>Battery module and thermal runaway containment</h1>
+      <p class="lede">Three generations of a propulsion battery module for a 9-seat electric aircraft, from jigs and fuses on Mark 1 to the full pack architecture on Mark 2. The core problem: one cell goes into thermal runaway, and the neighbours, the casing and the aircraft have to survive it.</p>
+      <div class="meta">
+        <div><span>Organisation</span>Vaeridion, Munich</div>
+        <div><span>Role</span>Mechanical Design Engineer. Bachelor thesis on the interstitial structure.</div>
+        <div><span>Period</span>Jul 2024 to Apr 2026</div>
+        <div><span>Tools and standards</span>Abaqus explicit and implicit, DO-160G, DO-311A</div>
+      </div>
+    </div>
+
+    <div class="hero"><img src="img/gloved-hand-holding-cell-taken.jpg" style="object-position:50% 58%" alt="Gloved hand holding a cell taken out of the test article after a thermal runaway test, with soot and debris around it"></div>
+
+    <div class="facts">
+      <div><b>9-seat</b> all-electric aircraft</div>
+      <div><b>Past 1000 °C</b> in simulation</div>
+      <div><b>DO-160G</b> and <b>DO-311A</b></div>
+      <div><b>Patent-pending</b>, named co-inventor</div>
+    </div>
+
+    <div class="phase">
+      <div><b>Mark 1</b><p>Jigs and fixtures. Fuse design campaign for the cell interconnects.</p></div>
+      <div><b>Mark 1+</b><p>Module design: sheet metal casing, assembly sequence, interconnect jigs, alignment features.</p></div>
+      <div><b>Mark 2</b><p>Pack architecture, cell placement and mounting, thermal runaway strategy, design through test.</p></div>
+      <div><b>Thesis</b><p>Interstitial structure: vibration, shock and thermomechanical simulation, sealing under heat.</p></div>
+    </div>
+
+    <div class="block">
+      <h2>Mark 1 and Mark 1+: a module you can actually assemble</h2>
+      <div class="txt">
+        <p>I started with the tooling: jigs and fixtures for cell handling and interconnection. The fuse design campaign for the cell interconnects came next, characterising how the interconnects open under fault current.</p>
+        <p>On Mark 1+ I designed the module itself. Sheet metal casing, the assembly sequence, and the jigs and alignment features that make the interconnection repeatable. The assembly sequence drove the design as much as the loads did.</p>
+        <div class="figs one">
+          <figure class="std"><img src="img/test-bench-cells-printed-holder.jpg" alt="Test bench with cells in a printed holder, a power supply, clamps and an oscilloscope"><figcaption>Test bench for the interconnect fuse campaign.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Mark 2: propagation or containment</h2>
+      <div class="txt">
+        <p>Mark 2 was the pack architecture. Where the cells sit, how they mount, how the pack integrates into the aircraft. The central decision was whether to let a thermal runaway propagate in a controlled way or contain it at the cell, and I worked on both sides of that trade.</p>
+        <p>I took the concepts from design through manufacturing and assembly, wrote the test requests, set up the instrumentation, and did the post-mortem analysis. With the materials and thermal engineers I developed sealing and venting methods and multi-material stack-ups for the module interior: composite protection against thermal ablation and aerogel thermal barriers, sized so they carry the structural loads and can still be manufactured and assembled. External suppliers were part of that loop.</p>
+        <div class="figs one">
+          <figure><img src="img/cad-cutaway-sealing-concept-end.jpg" alt="CAD cutaway of a sealing concept at the end of the battery module"><figcaption>Sealing concept.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Thesis: one structure for heat, vibration and shock</h2>
+      <div class="txt">
+        <p>My thesis was the interstitial structure between the cells. It has to contain a thermal runaway, survive vibration and shock, seal the casing, and stay within mass and packaging. I ran vibration and shock simulations against DO-160G and thermomechanical simulations against DO-311A, then ran the vibration and shock tests on hardware. The sealing of the casing under runaway temperatures was simulated in Abaqus explicit and implicit with temperature-dependent materials past 1000 °C. I built and burned the test articles. The structure is now patent-pending, with me as a named co-inventor.</p>
+        <div class="figs one">
+          <figure><img src="img/fullscale-interstitial-structure-machined-sandwich.jpg" alt="Full-scale interstitial structure on a workbench after machining, cell holes in a hexagonal array"><figcaption>Full-scale structure after bonding, curing and machining.</figcaption></figure>
+        </div>
+        <div class="figs">
+          <figure class="std"><img src="img/three-small-machined-sandwich-panels.jpg" alt="Three small machined sandwich panels with cell holes on a wooden table"><figcaption>Subscale trials, machined from a bonded preform in two variants.</figcaption></figure>
+          <figure class="contain"><img src="img/abaqus-displacement-contour-plots-interstitial.jpg" alt="Two Abaqus displacement contour plots of the interstitial structure under cell expansion"><figcaption>Cell expansion FEA. Top: all four lugs fixed. Bottom: two lugs free to slide.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>What the thermal runaway test showed</h2>
+      <div class="txt">
+        <p>The test forced fast propagation with several heated cells near the centre of the module. It compared epoxy and phenolic E-glass facesheets, and PU and PES foam cores. The idea behind the material split: the facesheets take little volume but hold the cells, so they have to survive as a charred skeleton. The foam takes most of the volume, so it should burn off with little residue and leave the vent paths open.</p>
+        <p>Phenolic held together and kept the cell array in place. Epoxy broke up and let the cell cans scatter, which blocks flow paths and pushes the pressure up. PES left less residue than PU. The middle facesheet left a clean ring on each cell at mid-height, so it also acts as a local wrapper. The updated design adds reinforced lugs and cell retainers.</p>
+        <div class="figs one">
+          <figure><img src="img/plot-normalized-cell-temperatures-gauge.jpg" alt="Plot of normalized cell temperatures and gauge pressure over time during the thermal runaway test"><figcaption>Temperatures normalized to the maximum, and gauge pressure, over the test.</figcaption></figure>
+        </div>
+        <div class="figs">
+          <figure class="std"><img src="img/charred-epoxy-facesheet-broken-into.jpg" alt="Charred epoxy facesheet broken into fragments after the test"><figcaption>Epoxy facesheet after the test.</figcaption></figure>
+          <figure class="std"><img src="img/charred-phenolic-facesheet-test-still.jpg" alt="Charred phenolic facesheet after the test, still mostly in one piece"><figcaption>Phenolic facesheet after the same test.</figcaption></figure>
+        </div>
+        <div class="figs">
+          <figure class="contain"><img src="img/cad-interstitial-structure-as-tested.jpg" alt="CAD of the interstitial structure as tested, green facesheet with cell holes and yellow foam core"><figcaption>Design as built and tested.</figcaption></figure>
+          <figure class="contain"><img src="img/cad-updated-structure-stacked-modules.jpg" alt="CAD of the updated structure, two stacked modules with a cooling plate, reinforced lugs and cell retainers"><figcaption>Updated design with reinforced lugs and cell retainers.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Patent-pending. Most figures on this page are from my bachelor thesis.</p>
+
+    <div class="next"><span>Next project</span><a href="#kolibri">Kolibri: fixed-wing eVTOL for defibrillator delivery</a></div>
+  </div>
+</main>
+
+<!-- ============================ KOLIBRI ============================ -->
+<main class="view" id="v-kolibri" data-title="Kolibri">
+  <div class="wrap">
+    <div class="case-top">
+      <a class="back" href="#work">Back to work</a>
+      <h1>Kolibri: fixed-wing eVTOL for defibrillator delivery</h1>
+      <p class="lede">A cardiac arrest patient in Germany waits about nine minutes for a defibrillator. Mission Pulse set out to halve that with a drone. Kolibri is the second prototype: a 3 m carbon eVTOL that flies to the patient, hovers, and lowers an AED on a rope. I led aerostructures and CAD, and worked on the aircraft from the first structural layout to the flight line.</p>
+      <div class="meta">
+        <div><span>Organisation</span>HORYZN, TUM student initiative</div>
+        <div><span>Role</span>Aerostructures &amp; CAD Team Lead</div>
+        <div><span>Period</span>Aug 2023 to Jan 2025</div>
+        <div><span>Materials and tools</span>Prepreg CFRP, Divinycell F core, 3DEXPERIENCE</div>
+      </div>
+    </div>
+
+    <div class="hero"><img src="img/kolibri-white-blue-fixedwing-evtol.jpg" alt="Kolibri on the apron, four lift rotors and a nose propeller"></div>
+
+    <div class="facts">
+      <div><b>3 m</b> wingspan</div>
+      <div><b>21 kg</b> take-off mass</div>
+      <div><b>2 kg</b> AED payload</div>
+      <div><b>CFRP sandwich</b> structure</div>
+    </div>
+
+    <div class="block">
+      <h2>Structural layout and CAD lead</h2>
+      <div class="txt">
+        <p>I owned the structural layout of the aircraft: where the loads go, where the bonded joints and fasteners sit, and how the parts split for manufacturing. I ran the design reviews and held the CAD standards across the team on 3DEXPERIENCE, through prototype build and integration.</p>
+        <p>Before the lead role I was on the software and avionics side, writing path planning and precision landing features in ROS and Python. That is useful now: I know what the flight software needs from the structure.</p>
+        <div class="figs one">
+          <figure class="std"><img src="img/cad-rendering-kolibri-wing-highlighted.jpg" alt="CAD rendering of Kolibri with the left wing highlighted in yellow"><figcaption>Aircraft CAD, one wing highlighted.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Molds, wingbox and lamination</h2>
+      <div class="txt">
+        <p>The airframe is a sandwich: prepreg carbon skins over a Divinycell F foam core. I designed the molds and tooling for the parts, the wingbox that ties the lift arms and the wing together, and then laminated the parts myself. Designing a laminate and laying it up are two different skills, and doing both changed how I design.</p>
+        <div class="figs">
+          <figure class="std"><img src="img/green-machined-mold-halves-fuselage.jpg" alt="Green machined mold halves for the fuselage on a workshop bench"><figcaption>Fuselage mold halves.</figcaption></figure>
+          <figure class="std"><img src="img/engineer-leaning-over-bare-carbon.jpg" style="object-position:35% 50%" alt="Engineer leaning over a bare carbon fibre fuselage on a workshop bench"><figcaption>Bare carbon fuselage during integration.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Payload box and rope release</h2>
+      <div class="txt">
+        <p>Regulations do not allow the aircraft to land next to bystanders, so the AED goes down on a rope from hover. I designed the payload box that holds the defibrillator and the spool mechanism that pays out the rope and releases the box on the ground. Both live in the fuselage and had to fit around the existing structure.</p>
+        <div class="figs">
+          <figure class="tall"><img src="img/orange-aed-payload-box-heart.jpg" alt="Orange AED payload box with a heart logo and red status lights on a workbench"><figcaption>AED payload box, status lights on.</figcaption></figure>
+          <figure class="tall"><img src="img/red-rope-spool-release-mechanism.jpg" alt="Red rope spool of the release mechanism inside the fuselage next to the AED"><figcaption>Rope spool inside the fuselage, AED behind it.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Flight test</h2>
+      <div class="txt">
+        <p>Kolibri flew. Hover, transition and precision landing were tested in the field. Flight test is where the structure gets its real load cases, and where the next revision starts.</p>
+        <div class="figs">
+          <figure><img src="img/kolibri-bare-carbon-hovering-front.jpg" alt="Kolibri in bare carbon hovering in front of a wooden building, with a line running up to a truss above"><figcaption>Hover on a safety tether.</figcaption></figure>
+          <figure><img src="img/kolibri-flying-over-field-against.jpg" alt="Kolibri flying over a field against a blue sky"><figcaption>In flight over the test field.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Sponsors, livery, funding and presenting</h2>
+      <div class="txt">
+        <p>A student aircraft is also a fundraising project. I worked with sponsors on the livery, on funding, on getting a video made, and I presented the aircraft. The engineering does not fly without that side.</p>
+        <div class="figs one">
+          <figure><img src="img/livery-options-kolibri-shown-above.jpg" alt="Four livery options for Kolibri shown from above and below, in red, grey and orange, black and yellow, and white and blue"><figcaption>Livery options worked out with the sponsors.</figcaption></figure>
+        </div>
+        <div class="figs">
+          <figure class="sq"><img src="img/mission-pulse-poster-kolibri-drone.jpg" alt="Mission Pulse poster showing the Kolibri drone and sponsor logos"><figcaption>Mission Pulse poster with sponsors.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="next"><span>Next project</span><a href="#prosthetic-hand">Cybathlon prosthetic hand mechanism</a></div>
+  </div>
+</main>
+
+<!-- ============================ GOAERO ============================ -->
+<main class="view" id="v-goaero" data-title="GoAERO">
+  <div class="wrap">
+    <div class="case-top">
+      <a class="back" href="#work">Back to work</a>
+      <h1>GoAERO: scaled octacopter concept</h1>
+      <p class="lede">GoAERO is a prize for an emergency response aircraft that can carry a person out of a place an ambulance cannot reach. HORYZN entered with a distributed propulsion eVTOL. I worked on the conceptual design of the scaled model, an octacopter, and the team's submission won a Stage 1 prize.</p>
+      <div class="meta">
+        <div><span>Organisation</span>HORYZN, TUM</div>
+        <div><span>Role</span>Conceptual design, scaled model</div>
+        <div><span>Period</span>2024 to 2025</div>
+        <div><span>Result</span>Stage 1 award, 10,000 USD</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Conceptual design of the scaled model</h2>
+      <div class="txt">
+        <p>The scaled model exists to prove the flight concept before the full-size aircraft. I worked on the octacopter layout: rotor arrangement, structural concept, and how the model scales to the full aircraft.</p>
+      </div>
+    </div>
+
+    <div class="next"><span>Next project</span><a href="#rocket">Bipropellant rocket: regen-cooled chamber</a></div>
+  </div>
+</main>
+
+<!-- ============================ PROSTHETIC HAND ============================ -->
+<main class="view" id="v-prosthetic-hand" data-title="Prosthetic hand">
+  <div class="wrap">
+    <div class="case-top">
+      <a class="back" href="#work">Back to work</a>
+      <h1>Cybathlon prosthetic hand mechanism</h1>
+      <p class="lede">A hand prosthesis for the Cybathlon arm race. I designed the hand mechanism: joints, transmission and packaging, all under tight tolerance constraints, and validated it with printed prototypes and actuation tests. Mechanism design at a scale where every tenth of a millimetre matters.</p>
+      <div class="meta">
+        <div><span>Organisation</span>MIRMI, TUM</div>
+        <div><span>Role</span>Mechanical Design Engineer</div>
+        <div><span>Period</span>May to Oct 2024</div>
+        <div><span>Tools</span>CAD, SLA and FDM printing, fit and function testing</div>
+      </div>
+    </div>
+
+    <div class="hero"><img src="img/prosthetic-hand-prototype-bench-carbon.jpg" style="object-position:50% 72%" alt="Prosthetic hand prototype with exposed tendons and wiring on a bench, carbon socket behind"></div>
+    <p class="cap">Hand prototype on the bench with the carbon socket behind it.</p>
+
+    <div class="block">
+      <h2>Joints, transmission and packaging</h2>
+      <div class="txt">
+        <p>Everything has to fit inside a hand. I designed the finger joints and the transmission from the actuators to the fingers, and packaged the actuation, sensing and wiring inside the palm.</p>
+        <div class="figs">
+          <figure class="tall"><img src="img/prosthetic-hand-palm-cover-off.jpg" alt="Prosthetic hand with the palm cover off, showing springs along each finger and brass gear segments at the knuckles"><figcaption>Palm with the cover off. Springs couple the joints in each finger, with brass gear segments at the knuckles.</figcaption></figure>
+          <figure class="tall"><img src="img/prosthetic-hand-lying-bench-motor.jpg" alt="Prosthetic hand lying on a bench with the motor board over the open palm and wiring around it"><figcaption>Motor board and wiring over the open palm.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Prototypes and actuation testing</h2>
+      <div class="txt">
+        <p>SLA prints for the tolerance-critical parts, FDM for the rest. Each iteration went through fit and function testing, then actuation testing with the drive electronics.</p>
+        <div class="figs">
+          <figure class="tall"><img src="img/prosthetic-hand-carbon-socket-held.jpg" alt="Prosthetic hand on its carbon socket held up during a bench test, with a sensor band on the operator's forearm"><figcaption>Bench test on the socket, with the sensor band on the operator's forearm.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="next"><span>Next project</span><a href="#sprind">Payload gripper for a hexacopter</a></div>
+  </div>
+</main>
+
+<!-- ============================ SPRIND ============================ -->
+<main class="view" id="v-sprind" data-title="Payload gripper">
+  <div class="wrap">
+    <div class="case-top">
+      <a class="back" href="#work">Back to work</a>
+      <h1>Payload gripper for a hexacopter</h1>
+      <p class="lede">SPRIND Funke Fully Autonomous Flight asked for a drone that flies a course with no GPS and no pilot, then finds and picks up a package at the end. I designed the payload gripping mechanism for our hexacopter at TUM and supported the avionics and system integration.</p>
+      <div class="meta">
+        <div><span>Organisation</span>TUM Autonomous Aerial Systems</div>
+        <div><span>Role</span>Flight-Test &amp; Integration Engineer</div>
+        <div><span>Period</span>Apr to Sep 2024</div>
+        <div><span>Program</span>SPRIND Funke Fully Autonomous Flight</div>
+      </div>
+    </div>
+
+    <div class="hero"><img src="img/side-view-cad-hexacopter-gripper.jpg" style="aspect-ratio:auto" alt="Side view CAD of the hexacopter with the gripper hanging under the centre between the landing gear legs"></div>
+    <p class="cap">Side view in CAD. The gripper hangs between the landing gear legs.</p>
+
+    <div class="block">
+      <h2>Centre plates and integration</h2>
+      <div class="txt">
+        <p>The flight computer, ESCs and sensors sit on two carbon centre plates, with the arms clamped between them. The plates were cut on a CNC router. In the field I ran the pre-flight checks and made the quick fixes during test days.</p>
+        <div class="figs">
+          <figure class="contain"><img src="img/cad-hexacopter-centre-plate-flight.jpg" alt="CAD of the lower centre plate with the flight electronics laid out between six arm clamps"><figcaption>Lower centre plate with the electronics laid out.</figcaption></figure>
+          <figure class="contain"><img src="img/cad-top-centre-plate-closed.jpg" alt="CAD of the top centre plate closed over the electronics"><figcaption>Top plate closed over the electronics.</figcaption></figure>
+        </div>
+        <div class="figs one">
+          <figure class="wide"><img src="img/carbon-fibre-centre-plate-bed.jpg" style="object-position:50% 45%" alt="Carbon fibre centre plate on the bed of a CNC router after cutting"><figcaption>Centre plate on the CNC router.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="next"><span>Next project</span><a href="#goaero">GoAERO: scaled octacopter concept</a></div>
+  </div>
+</main>
+
+<!-- ============================ ROCKET ============================ -->
+<main class="view" id="v-rocket" data-title="Bipropellant rocket">
+  <div class="wrap">
+    <div class="case-top">
+      <a class="back" href="#work">Back to work</a>
+      <h1>Bipropellant rocket: regen-cooled chamber</h1>
+      <p class="lede">Composite manufacturing and structural prototyping for a student-built bipropellant rocket. I worked on the regeneratively cooled chamber subsystems and planned layups and tooling. First time I built hardware that had to survive serious heat.</p>
+      <div class="meta">
+        <div><span>Organisation</span>WARR, TUM</div>
+        <div><span>Role</span>Structural Engineer</div>
+        <div><span>Period</span>Oct 2022 to Feb 2023</div>
+        <div><span>Tools</span>Composite layup, tooling</div>
+      </div>
+    </div>
+
+    <div class="next"><span>Next project</span><a href="#firefighting-uav">Firefighting UAV: gimbaled nozzle and airframe</a></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Varun Bharadwaj, Munich. <a href="mailto:varunbharadwaj05@gmail.com">varunbharadwaj05@gmail.com</a></div>
+    <div>Updated September 2026</div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="Enlarged image"><img alt=""><figcaption></figcaption></div>
+
+<script>
+const views=[...document.querySelectorAll('.view')];
+function route(){
+  const h=(location.hash||'#home').slice(1);
+  let v=document.getElementById('v-'+h), anchor=null;
+  if(!v){ v=document.getElementById('v-home'); anchor=document.getElementById(h); }
+  views.forEach(x=>x.classList.toggle('on',x===v));
+  document.title=v.dataset.title?v.dataset.title+', Varun Bharadwaj':'Varun Bharadwaj';
+  if(anchor){ anchor.scrollIntoView({block:'start'}); } else { window.scrollTo({top:0,behavior:'instant'}); }
+}
+window.addEventListener('hashchange',route);
+route();
+
+const lb=document.getElementById('lb');
+document.querySelectorAll('figure img,.hero img,.lead-photo img').forEach(im=>{
+  im.style.cursor='zoom-in';
+  im.addEventListener('click',()=>{
+    lb.querySelector('img').src=im.src;
+    const f=im.closest('figure'); lb.querySelector('figcaption').textContent=f&&f.querySelector('figcaption')?f.querySelector('figcaption').textContent:'';
+    lb.classList.add('on');
+  });
+});
+lb.addEventListener('click',()=>lb.classList.remove('on'));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') lb.classList.remove('on'); });
+</script>
+</body>
+</html>
